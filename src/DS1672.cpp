@@ -188,18 +188,32 @@ void DS1672::set_time(DateTime now) {
 }
 
 byte DS1672::get_reg(uint8_t address) {
-    Wire.beginTransmission(RTC_ADDRESS);
-    Wire.write(address);
-    Wire.endTransmission();
-    Wire.requestFrom(RTC_ADDRESS, 1);
-    return Wire.read();
-}
+#ifndef __AVR_ATtiny84__
+        Wire.beginTransmission(RTC_ADDRESS);
+        Wire.write(address);
+        Wire.endTransmission();
+        Wire.requestFrom(RTC_ADDRESS, 1);
+        return Wire.read();
+    #else
+        TinyWireM.beginTransmission(RTC_ADDRESS);
+        TinyWireM.write(address);
+        TinyWireM.endTransmission();
+        TinyWireM.requestFrom(RTC_ADDRESS, 1);
+        return TinyWireM.read();
+    #endif}
 
 void DS1672::set_reg(uint8_t address, byte value) {
-    Wire.beginTransmission(RTC_ADDRESS);
-    Wire.write(address);
-    Wire.write(value);
-    Wire.endTransmission();
+    #ifndef __AVR_ATtiny84__
+        Wire.beginTransmission(RTC_ADDRESS);
+        Wire.write(address);
+        Wire.write(value);
+        Wire.endTransmission();
+    #else
+        TinyWireM.beginTransmission(RTC_ADDRESS);
+        TinyWireM.write(address);
+        TinyWireM.write(value);
+        TinyWireM.endTransmission();
+    #endif
 }
 
 byte DS1672::decToBcd(byte val) {
