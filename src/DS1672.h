@@ -5,7 +5,12 @@
 #ifndef DS1672_h
 #define DS1672_h
 
-#include <Wire.h>
+#ifdef __AVR_ATtiny84__
+    #include <TinyWireM.h>
+#else
+    #include <Wire.h>
+#endif
+
 #include <Arduino.h>
 
 // DateTime (get everything at once) from JeeLabs / Adafruit
