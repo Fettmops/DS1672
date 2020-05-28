@@ -6,6 +6,7 @@ ATTiny 84 TinyWireM in Arduino
 
 To set correct timestamp during compilation
 
+```c
 static const char PROGMEM compileDate[] = __DATE__;
 static const char PROGMEM compileTime[] = __TIME__;
 
@@ -25,3 +26,4 @@ void setup()
 }
 
 void loop(){}
+```
