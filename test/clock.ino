@@ -8,7 +8,7 @@ DS1672 ds1672;
 
 //DateTime now(2020,5,28,9,41,0); //if you wanna set
 
-DateTime test(0,0,0,0,0,0);
+DateTime rightNow(0,0,0,0,0,0);
 void setup() {
   // put your setup code here, to run once:
   TinyWireM.begin();
@@ -20,7 +20,7 @@ void setup() {
   
   //ds1672.set_time(now);       //if you wanna set
   
-  test=ds1672.get_time();
+  rightNow=ds1672.get_time();
   
   ds1672.enable();
 
